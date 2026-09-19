@@ -110,7 +110,7 @@ function Home() {
                     <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <span>10+ implementations</span>
+                <span>20+ implementations</span>
               </div>
               <div className="h-4 w-px bg-brand-blue/20" />
               <span>10+ years Zoho expertise</span>
@@ -145,7 +145,7 @@ function Home() {
       <section className="py-20 bg-surface-mist">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { v: "10+", l: "Implementations Delivered" },
+            { v: "20+", l: "Implementations Delivered" },
             { v: "10+", l: "Years Zoho Expertise" },
             { v: "50+", l: "Zoho Apps Mastered" },
             { v: "98%", l: "Client Retention Rate" },

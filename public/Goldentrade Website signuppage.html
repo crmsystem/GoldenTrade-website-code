@@ -296,7 +296,7 @@
 <!-- ================= METRICS ================= -->
 <div class="metrics">
   <div class="wrap metrics-grid">
-    <div class="metric"><b>10+</b><span>Implementations delivered</span></div>
+    <div class="metric"><b>20+</b><span>Implementations delivered</span></div>
     <div class="metric"><b>98%</b><span>Client retention</span></div>
     <div class="metric"><b>50+</b><span>Zoho apps mastered</span></div>
     <div class="metric"><b>60 days</b><span>Average go-live</span></div>
@@ -431,8 +431,8 @@
           </div>
 
           <a class="btn btn-gold" id="subscribeBtn"
-             href="https://subscriptions.zoho.com/subscribe/REPLACE_WITH_YOUR_HOSTED_PAGE_KEY/ai-support-monthly"
-             rel="noopener">Subscribe&nbsp;—&nbsp;<span id="btnTotal">$13.20</span>/month&nbsp;→</a>
+             href="mailto:developer@goldentrade.solutions"
+             rel="noopener">Get in Touch&nbsp;→</a>
 
           <p class="price-fine">Secure checkout hosted by Zoho Billing · Visa, Mastercard and Amex accepted<br>You won't be charged today. Billing begins when your 30-day trial ends.</p>
         </div>
@@ -615,14 +615,10 @@
     tryNext();
   })();
 
-  /* ---- seat calculator + subscribe link ---- */
+  /* ---- seat calculator ---- */
   var PRICE_PER_USER = 0.88;                       // USD per user per month
-  var HOSTED_PAGE = 'https://subscriptions.zoho.com/subscribe/REPLACE_WITH_YOUR_HOSTED_PAGE_KEY/ai-support-monthly';
   var seats = document.getElementById('seats');
   var total = document.getElementById('total');
-  var btnTotal = document.getElementById('btnTotal');
-  var subscribeBtn = document.getElementById('subscribeBtn');
-  var autorenew = document.getElementById('autorenew');
 
   function money(n) {
     return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -631,18 +627,10 @@
     var q = parseInt(seats.value, 10);
     if (isNaN(q) || q < 1) { q = 1; }
     if (q > 9999) { q = 9999; }
-    var amount = money(q * PRICE_PER_USER);
-    total.textContent = amount;
-    btnTotal.textContent = amount;
-    /* Zoho Billing hosted pages accept quantity and add-on params on the URL.
-       Adjust the param names to match your published page if they differ. */
-    subscribeBtn.href = HOSTED_PAGE
-      + '?quantity=' + q
-      + '&auto_renew=' + (autorenew.checked ? 'true' : 'false');
+    total.textContent = money(q * PRICE_PER_USER);
   }
   seats.addEventListener('input', refresh);
   seats.addEventListener('change', refresh);
-  autorenew.addEventListener('change', refresh);
   refresh();
 
   /* ---------------------------------------------------------------

@@ -1,0 +1,44 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "86856000000014025",
+      "name": "Project-Rainfall",
+      "domain": {
+        "id": "10132149086",
+        "name": "project-rainfall-936061749.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 2,
+          "id": "10132150107",
+          "name": "Production",
+          "type": 1
+        },
+        {
+          "idx": 1,
+          "id": "936061749",
+          "name": "Development",
+          "type": 3,
+          "env_status": "Active",
+          "project_details": {
+            "project_name": "Project-Rainfall",
+            "id": "86856000000014025",
+            "project_type": "Live"
+          },
+          "is_default": false,
+          "action_required": false
+        }
+      ]
+    }
+  ]
+}

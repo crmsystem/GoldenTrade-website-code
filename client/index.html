@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenTrade Authentication</title>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
+</head>
+<body>
+    <p>Checking authentication...</p>
+
+    <script>
+        (function () {
+            var GOLDENTRADE_URL = "https://goldentrade.solutions/Goldentrade%20Website%20signuppage.html?loggedin=true";
+            var CATALYST_LOGIN_URL = "/__catalyst/auth/login";
+
+            function redirectToLogin() {
+                window.location.replace(CATALYST_LOGIN_URL);
+            }
+
+            function redirectToGoldentrade(user) {
+                window.catalystAuthenticatedUser = user;
+                window.location.replace(GOLDENTRADE_URL);
+            }
+
+            if (!window.catalyst || !window.catalyst.auth || typeof window.catalyst.auth.isUserAuthenticated !== "function") {
+                redirectToLogin();
+                return;
+            }
+
+            window.catalyst.auth.isUserAuthenticated()
+                .then(function (response) {
+                    if (response && response.content) {
+                        redirectToGoldentrade(response.content);
+                    } else {
+                        redirectToLogin();
+                    }
+                })
+                .catch(function () {
+                    redirectToLogin();
+                });
+        })();
+    </script>
+</body>
+</html>

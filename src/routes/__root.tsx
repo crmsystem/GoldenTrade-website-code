@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, organizationJsonLd } from "../lib/seo";
 import { getFirebaseAnalytics } from "../lib/firebase";
+import { PAGESENSE_SNIPPET, activatePageSense } from "../lib/pagesense";
 
 function NotFoundComponent() {
   return (
@@ -113,6 +114,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Zoho PageSense — kept first in <head> so its anti-flicker guard runs before paint */}
+        <script id="pagesenseCode" dangerouslySetInnerHTML={{ __html: PAGESENSE_SNIPPET }} />
         <HeadContent />
         <script
           type="application/ld+json"
@@ -129,6 +132,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  // PageSense: re-activate on every client-side navigation so goals, heatmaps,
+  // recordings and funnels track each page view in this single-page app.
+  useEffect(() => {
+    return router.subscribe("onResolved", (evt) => {
+      if (evt.pathChanged) activatePageSense();
+    });
+  }, [router]);
 
   useEffect(() => {
     getFirebaseAnalytics();

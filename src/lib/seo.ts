@@ -1,4 +1,4 @@
-export const SITE_URL = "https://www.goldentradecrmsolutions.com";
+export const SITE_URL = "https://goldentrade.solutions";
 export const SITE_NAME = "Goldentrade Solutions";
 export const SITE_DESCRIPTION =
   "Goldentrade Solutions is a Zoho Authorized Partner offering end-to-end implementation, customization and integration of Zoho CRM, People, Books, Creator and the full Zoho One suite.";

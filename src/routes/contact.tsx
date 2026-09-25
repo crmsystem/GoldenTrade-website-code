@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { SITE_URL } from "@/lib/seo";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -137,7 +138,7 @@ function Contact() {
               <p className="text-brand-deep/60">We'll get back to you within 1 business day.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-5">
+            <form onSubmit={(e) => { e.preventDefault(); trackMetaEvent("Lead", { content_name: "Contact Form" }); setSubmitted(true); }} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-[10px] font-bold uppercase text-brand-deep/40 tracking-wider">First Name</label>

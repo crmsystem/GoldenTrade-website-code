@@ -14,6 +14,12 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, organizationJsonLd } from "../lib/seo";
 import { getFirebaseAnalytics } from "../lib/firebase";
 import { PAGESENSE_SNIPPET, activatePageSense } from "../lib/pagesense";
+import {
+  META_PIXEL_SNIPPET,
+  META_PIXEL_NOSCRIPT_SRC,
+  installMetaClickTracking,
+  trackMetaPageView,
+} from "../lib/metaPixel";
 
 function NotFoundComponent() {
   return (
@@ -116,6 +122,8 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         {/* Zoho PageSense — kept first in <head> so its anti-flicker guard runs before paint */}
         <script id="pagesenseCode" dangerouslySetInnerHTML={{ __html: PAGESENSE_SNIPPET }} />
+        {/* Meta Pixel — base code (init + first PageView) */}
+        <script id="metaPixelCode" dangerouslySetInnerHTML={{ __html: META_PIXEL_SNIPPET }} />
         <HeadContent />
         <script
           type="application/ld+json"
@@ -123,6 +131,9 @@ function RootShell({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
+        <noscript>
+          <img height="1" width="1" style={{ display: "none" }} alt="" src={META_PIXEL_NOSCRIPT_SRC} />
+        </noscript>
         {children}
         <Scripts />
       </body>
@@ -141,6 +152,22 @@ function RootComponent() {
       if (evt.pathChanged) activatePageSense();
     });
   }, [router]);
+
+  // Meta Pixel: the base code already sent the first PageView, so only send one
+  // when the path actually changes during client-side navigation.
+  useEffect(() => {
+    let lastPath = window.location.pathname;
+    return router.subscribe("onResolved", (evt) => {
+      const path = evt.toLocation.pathname;
+      if (path !== lastPath) {
+        lastPath = path;
+        trackMetaPageView();
+      }
+    });
+  }, [router]);
+
+  // Meta Pixel: Contact (email/phone links) and StartTrial (Zoho signup) clicks on every page.
+  useEffect(() => installMetaClickTracking(), []);
 
   useEffect(() => {
     getFirebaseAnalytics();

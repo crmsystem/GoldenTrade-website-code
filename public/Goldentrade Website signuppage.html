@@ -227,6 +227,23 @@
     section.pad{padding:56px 0}
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '731385407768380');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=731385407768380&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -518,7 +535,7 @@
     </details>
     <details>
       <summary>What happens to my data?</summary>
-      <p>It's stored in our own Zoho CRM and used to support you. We don't sell it, rent it, or pass it to third-party advertisers. Ask us to delete your account at any time and we will.</p>
+      <p>It's stored in our own Zoho CRM and used to support you. We don't sell or rent it. Like most websites, this page uses the Meta Pixel to measure visits and sign-ups from our Facebook activity; we never share the details you type into our forms with advertisers. Ask us to delete your account at any time and we will.</p>
     </details>
     <details>
       <summary>Can the AI see inside our Zoho account?</summary>
@@ -633,6 +650,15 @@
   seats.addEventListener('change', refresh);
   refresh();
 
+  /* Meta Pixel: checkout click with the seat-based monthly value */
+  var subscribeBtn = document.getElementById('subscribeBtn');
+  if (subscribeBtn) subscribeBtn.addEventListener('click', function () {
+    if (!window.fbq) { return; }
+    var q = parseInt(seats.value, 10);
+    if (isNaN(q) || q < 1) { q = 1; }
+    fbq('track', 'InitiateCheckout', { value: +(q * PRICE_PER_USER).toFixed(2), currency: 'USD', num_items: q });
+  });
+
   /* ---------------------------------------------------------------
     CATALYST HOSTED AUTH — sign in, sign up, reset password
     These are the existing Hosted Authentication endpoints for Project-Rainfall.
@@ -690,6 +716,13 @@
 
   authTabs.forEach(function (btn) {
     btn.addEventListener('click', function () { setAuthTab(btn.dataset.target); });
+  });
+
+  /* Meta Pixel: count "Continue to sign up" as a Lead (not log-in or password reset) */
+  authGoBtn.addEventListener('click', function () {
+    if (window.fbq && currentAuthKey === 'signup') {
+      fbq('track', 'Lead', { content_name: 'Free Zoho Audit + AI Support Sign-up' });
+    }
   });
 
   function revealGatedContent() {

@@ -738,10 +738,12 @@ src="https://www.facebook.com/tr?id=731385407768380&ev=PageView&noscript=1"
     var loggedIn = params.get('loggedin') === 'true';
 
     if (loggedIn) {
-      revealGatedContent();
-    } else {
-      setAuthTab('signup');
+      // The live AI Support Copilot now lives on /signup, not this static page —
+      // send authenticated visitors there instead of revealing gated content here.
+      window.location.replace('/signup' + window.location.search);
+      return;
     }
+    setAuthTab('signup');
   })();
 </script>
 </body>

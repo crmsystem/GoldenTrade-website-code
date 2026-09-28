@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StrategyRouteImport } from './routes/strategy'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ServiceFeeRouteImport } from './routes/service-fee'
 import { Route as FreeTrialRouteImport } from './routes/free-trial'
@@ -23,6 +24,11 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 const StrategyRoute = StrategyRouteImport.update({
   id: '/strategy',
   path: '/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/free-trial': typeof FreeTrialRoute
   '/service-fee': typeof ServiceFeeRoute
   '/services': typeof ServicesRouteWithChildren
+  '/signup': typeof SignupRoute
   '/strategy': typeof StrategyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/free-trial': typeof FreeTrialRoute
   '/service-fee': typeof ServiceFeeRoute
+  '/signup': typeof SignupRoute
   '/strategy': typeof StrategyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/free-trial': typeof FreeTrialRoute
   '/service-fee': typeof ServiceFeeRoute
   '/services': typeof ServicesRouteWithChildren
+  '/signup': typeof SignupRoute
   '/strategy': typeof StrategyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/free-trial'
     | '/service-fee'
     | '/services'
+    | '/signup'
     | '/strategy'
     | '/services/$slug'
     | '/services/'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/free-trial'
     | '/service-fee'
+    | '/signup'
     | '/strategy'
     | '/services/$slug'
     | '/services'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/free-trial'
     | '/service-fee'
     | '/services'
+    | '/signup'
     | '/strategy'
     | '/services/$slug'
     | '/services/'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   FreeTrialRoute: typeof FreeTrialRoute
   ServiceFeeRoute: typeof ServiceFeeRoute
   ServicesRoute: typeof ServicesRouteWithChildren
+  SignupRoute: typeof SignupRoute
   StrategyRoute: typeof StrategyRoute
 }
 
@@ -163,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/strategy'
       fullPath: '/strategy'
       preLoaderRoute: typeof StrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -253,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   FreeTrialRoute: FreeTrialRoute,
   ServiceFeeRoute: ServiceFeeRoute,
   ServicesRoute: ServicesRouteWithChildren,
+  SignupRoute: SignupRoute,
   StrategyRoute: StrategyRoute,
 }
 export const routeTree = rootRouteImport

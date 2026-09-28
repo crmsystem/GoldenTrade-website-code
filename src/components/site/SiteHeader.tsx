@@ -39,12 +39,12 @@ export function SiteHeader() {
         </div>
 
         <div className="hidden md:flex items-center gap-3 shrink-0">
-          <a
-            href="/Goldentrade%20Website%20signuppage.html"
+          <Link
+            to="/signup"
             className="inline-flex bg-brand-deep text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-brand-deep/20 hover:bg-brand-blue hover:-translate-y-0.5 transition-all"
           >
             Sign Up
-          </a>
+          </Link>
           <Link
             to="/contact"
             className="inline-flex bg-brand-blue text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-brand-blue/20 hover:bg-brand-deep hover:-translate-y-0.5 transition-all"
@@ -75,13 +75,13 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href="/Goldentrade%20Website%20signuppage.html"
+            <Link
+              to="/signup"
               onClick={() => setOpen(false)}
               className="mt-4 bg-brand-deep text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-center"
             >
               Sign Up
-            </a>
+            </Link>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}

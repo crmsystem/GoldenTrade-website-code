@@ -3,7 +3,10 @@
 // and move this behind a small server-side proxy (e.g. a Cloudflare Worker) when you're
 // ready to stop exposing it publicly.
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY as string;
-const GROQ_MODEL = "openai/gpt-oss-20b";
+// llama-3.3-70b-versatile isn't exposed on this account's Groq key — qwen3-27b is the
+// closest available "lean but capable" chat model: fast, no hidden reasoning-token
+// overhead, and follows the system prompt/markdown formatting reliably.
+const GROQ_MODEL = "qwen/qwen3.8-27b";
 const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 
 export type ChatRole = "system" | "user" | "assistant";
@@ -20,8 +23,6 @@ export async function askGroq(messages: ChatMessage[]): Promise<string> {
       model: GROQ_MODEL,
       messages,
       temperature: 0.4,
-      // openai/gpt-oss-20b is a reasoning model — max_tokens covers its internal
-      // reasoning too, not just the visible reply, so keep enough headroom.
       max_tokens: 600,
     }),
   });

@@ -32,7 +32,7 @@ const AUTH_URLS = {
 const AUTH_COPY = {
   signup: {
     h: "Create your free account",
-    s: "Takes under a minute. You'll get 30 days of full AI support access and a link to book your audit. No card needed to start.",
+    s: "Takes under a minute. You'll get 7 days of full AI support access and a link to book your audit. No card needed to start.",
     panel: "Continue in a new tab to finish signing up securely.",
     btn: "Continue to sign up →",
   },
@@ -181,14 +181,14 @@ function SignupPage() {
 
           <div className="hero-grid">
             <div>
-              <span className="eyebrow">Free 30-day trial · No credit card</span>
+              <span className="eyebrow">Free 7-day trial · No credit card</span>
               <h1>
                 Stop guessing what your Zoho can do. <em>Find out in 30 minutes.</em>
               </h1>
               <p className="lede">
                 Create your free Golden Trade account and get a senior-led audit of your Zoho setup — plus
                 round-the-clock AI support that answers your Zoho questions the moment you have them, not the next
-                business day. Free for 30 days, then just 88¢ per user per month if you keep it.
+                business day. Free for 7 days, then just 88¢ per user per month if you keep it.
               </p>
 
               <ul className="ticks">
@@ -262,7 +262,7 @@ function SignupPage() {
 
                   <p className="auth-note">
                     Signing up asks for your name, work email and a password. No card is required and nothing is
-                    charged during your 30-day trial. Unsubscribe anytime. Already a client?{" "}
+                    charged during your 7-day trial. Unsubscribe anytime. Already a client?{" "}
                     <a href="mailto:developer@goldentrade.solutions">Email us directly</a>.
                   </p>
                 </div>
@@ -272,7 +272,7 @@ function SignupPage() {
                   <h3>You're in.</h3>
                   <p>
                     Your account is set up. Check your inbox for a calendar link to book your 30-minute audit — and
-                    take a look below at everything your AI Support Copilot and account now unlock. Your 30-day trial
+                    take a look below at everything your AI Support Copilot and account now unlock. Your 7-day trial
                     starts now; we'll remind you before it ends.
                   </p>
                 </div>
@@ -480,7 +480,7 @@ function SignupPage() {
                 </div>
                 <div className="step">
                   <b>STEP 02</b>
-                  <h3>Use it free for 30 days</h3>
+                  <h3>Use it free for 7 days</h3>
                   <p>
                     Ask the copilot whatever's blocking you today, and book a 30-minute slot with a senior consultant.
                     Do both. Do neither. Nothing is charged.
@@ -502,8 +502,8 @@ function SignupPage() {
           <section className="pad" id="subscribe">
             <div className="wrap">
               <div className="head">
-                <span className="eyebrow dark">After your 30-day trial</span>
-                <h2>Free for 30 days. Then 88&cent; per user, per month.</h2>
+                <span className="eyebrow dark">After your 7-day trial</span>
+                <h2>Free for 7 days. Then 88&cent; per user, per month.</h2>
                 <p>
                   Keep the AI Support Copilot for less than a cup of coffee per team, per month. No contract, no
                   minimum seat count, no setup fee — and you only start paying on day 31.
@@ -518,7 +518,7 @@ function SignupPage() {
                       <b>$0.88</b>
                       <span>USD / user / month</span>
                     </div>
-                    <p>Billed monthly · First 30 days free · Cancel anytime</p>
+                    <p>Billed monthly · First 7 days free · Cancel anytime</p>
                   </div>
 
                   <div className="price-body">
@@ -558,7 +558,7 @@ function SignupPage() {
                     <p className="price-fine">
                       Secure checkout hosted by Zoho Billing · Visa, Mastercard and Amex accepted
                       <br />
-                      You won't be charged today. Billing begins when your 30-day trial ends.
+                      You won't be charged today. Billing begins when your 7-day trial ends.
                     </p>
                   </div>
                 </div>
@@ -605,7 +605,7 @@ function SignupPage() {
                     <h4>Auto-renewal terms — in plain English</h4>
                     <p>
                       <b>What you're agreeing to:</b> $0.88 USD per user per month, charged to your card on the same
-                      day each month, starting the day your 30-day free trial ends.
+                      day each month, starting the day your 7-day free trial ends.
                     </p>
                     <p>
                       <b>It renews until you stop it.</b> There's no fixed term. The subscription continues month to
@@ -681,7 +681,7 @@ function SignupPage() {
             </p>
           </details>
           <details>
-            <summary>What happens when the 30-day trial ends?</summary>
+            <summary>What happens when the 7-day trial ends?</summary>
             <p>
               We email you 7 days and 1 day before it ends. If you've subscribed, billing simply starts at $0.88 per
               user per month. If you haven't, your account drops to read-only — you keep your saved answers but
@@ -736,7 +736,7 @@ function SignupPage() {
         <div className="wrap">
           <h2>Your Zoho is either working for you or quietly costing you.</h2>
           <p>
-            Find out which in thirty minutes. Create a free account, get 30 days of AI support at no cost, and keep
+            Find out which in thirty minutes. Create a free account, get 7 days of AI support at no cost, and keep
             it afterwards for 88¢ per user per month — or don't.
           </p>
           <a className="btn btn-gold" href="#signup">
@@ -746,7 +746,7 @@ function SignupPage() {
             Or email a question first
           </a>
           <p style={{ marginTop: "24px", fontSize: "14px", color: "rgba(255,255,255,.55)" }}>
-            No card to start · 30 days free · $0.88/user/month after · Cancel anytime
+            No card to start · 7 days free · $0.88/user/month after · Cancel anytime
           </p>
         </div>
       </section>
